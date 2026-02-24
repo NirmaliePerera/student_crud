@@ -1,0 +1,15 @@
+# Change folderName to the actual name of the folder (e.g.,John)
+
+RewriteEngine On
+RewriteBase /folderName/
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Owner dashboard: https://bciartist.lk/<owner>
+RewriteRule ^([A-Za-z0-9_-]+)/?$ /folderName/index.php?createdBy=$1 [L,QSA]
+
+# Form pages under the same folder
+RewriteRule ^([A-Za-z0-9_-]+)/edit/([0-9]+)/?$ /folderName/edit.php?id=$2&createdBy=$1 [L,QSA]
+RewriteRule ^([A-Za-z0-9_-]+)/delete/([0-9]+)/?$ /folderName/delete.php?id=$2&createdBy=$1 [L,QSA]
